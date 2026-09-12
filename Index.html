@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Mino ❤️</title>
+
+<style>
+*{box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+color:white;
+background:#09040d;
+overflow-x:hidden;
+}
+
+.background{
+position:fixed;
+inset:0;
+z-index:-2;
+background:
+radial-gradient(circle at 20% 20%,#5b174c,transparent 35%),
+radial-gradient(circle at 80% 80%,#17285d,transparent 35%),
+#09040d;
+}
+
+.stars{
+position:fixed;
+inset:0;
+z-index:-1;
+opacity:.45;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:55px 55px;
+animation:stars 18s linear infinite;
+}
+
+@keyframes stars{
+to{transform:translateY(55px)}
+}
+
+section{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:25px;
+text-align:center;
+}
+
+.card{
+width:min(720px,100%);
+padding:40px 25px;
+border-radius:30px;
+background:rgba(255,255,255,.07);
+border:1px solid rgba(255,255,255,.15);
+backdrop-filter:blur(15px);
+box-shadow:0 20px 80px rgba(0,0,0,.5);
+}
+
+h1{
+font-size:clamp(45px,11vw,85px);
+margin:10px 0;
+background:linear-gradient(90deg,#fff,#ff91cc,#fff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+h2{
+font-size:clamp(32px,8vw,55px);
+}
+
+p{
+font-size:18px;
+line-height:1.7;
+color:#ddd;
+}
+
+.heart{
+font-size:70px;
+animation:pulse 1.3s infinite;
+}
+
+@keyframes pulse{
+50%{transform:scale(1.18)}
+}
+
+button{
+border:none;
+border-radius:999px;
+padding:15px 25px;
+margin:10px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
+background:white;
+color:#180915;
+transition:.25s;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.pink{
+background:#ff69b4;
+color:white;
+}
+
+.hidden{
+display:none;
+}
+
+#typed{
+min-height:100px;
+}
+
+.memories{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-top:25px;
+}
+
+.memory{
+padding:25px 15px;
+border-radius:20px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.12);
+}
+
+.memory b{
+display:block;
+font-size:21px;
+margin-bottom:10px;
+}
+
+.countdown{
+font-size:45px;
+font-weight:bold;
+margin:25px 0;
+}
+
+.finalText{
+font-size:clamp(30px,7vw,58px);
+font-weight:bold;
+}
+
+.floating{
+position:fixed;
+top:-40px;
+pointer-events:none;
+animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(500deg);
+opacity:0;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="stars"></div>
+
+<!-- FIRST SCREEN -->
+
+<section id="home">
+
+<div class="card">
+
+<div class="heart">❤️</div>
+
+<h1>Hey Mino...</h1>
+
+<p id="typed"></p>
+
+<button class="pink" onclick="showSection('memories')">
+Open your surprise ✨
+</button>
+
+</div>
+
+</section>
+
+
+<!-- MEMORIES -->
+
+<section id="memories" class="hidden">
+
+<div class="card">
+
+<h2>Our Little Memories 🥹</h2>
+
+<p>
+Not every memory needs a picture.
+Some memories just live in the heart.
+</p>
+
+<div class="memories">
+
+<div class="memory">
+<b>💬 The Talks</b>
+All those random conversations that somehow became my favourite part of the day.
+</div>
+
+<div class="memory">
+<b>😂 The Chaos</b>
+The jokes, silly moments, arguments and everything in between.
+</div>
+
+<div class="memory">
+<b>🫶 The Care</b>
+The little things that meant much more than they seemed.
+</div>
+
+<div class="memory">
+<b>🌙 The Late Nights</b>
+Those conversations and moments that I'll remember for a long time.
+</div>
+
+</div>
+
+<button class="pink" onclick="showSection('countdown')">
+One more thing... 👀
+</button>
+
+</div>
+
+</section>
+
+
+<!-- COUNTDOWN -->
+
+<section id="countdown" class="hidden">
+
+<div class="card">
+
+<h2>Wait for it... 👀</h2>
+
+<p>
+Something special is waiting for you.
+</p>
+
+<div class="countdown" id="timer">
+00:00:00
+</div>
+
+<button class="pink" onclick="reveal()">
+Reveal it now ❤️
+</button>
+
+</div>
+
+</section>
+
+
+<!-- FINAL -->
+
+<section id="final" class="hidden">
+
+<div class="card">
+
+<div class="heart">💗</div>
+
+<h2 class="finalText">
+Mino, you are a special part of my story.
+</h2>
+
+<p>
+I don't need everything to be perfect.
+I'm just grateful for the memories,
+the laughs, the conversations,
+and all those little moments that made
+this chapter special.
+</p>
+
+<p>
+<b>
+Whatever happens next,
+I hope you always remember that you mattered to me. ❤️
+</b>
+</p>
+
+<p>
+— San
+</p>
+
+<button class="pink" onclick="celebrate()">
+Final surprise 🎉
+</button>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* TYPING ANIMATION */
+
+const message =
+"I made this little corner of the internet just for you... because some people deserve more than an ordinary message. ❤️";
+
+let index = 0;
+
+function typeText(){
+
+if(index < message.length){
+
+document.getElementById("typed").textContent +=
+message[index];
+
+index++;
+
+setTimeout(typeText,35);
+
+}
+
+}
+
+typeText();
+
+
+/* SCREEN SWITCHING */
+
+function showSection(id){
+
+document.querySelectorAll("section")
+.forEach(section=>{
+section.classList.add("hidden");
+});
+
+document.getElementById(id)
+.classList.remove("hidden");
+
+window.scrollTo(0,0);
+
+}
+
+
+/* COUNTDOWN */
+
+let endTime = Date.now() + 10000;
+
+function countdown(){
+
+let remaining =
+Math.max(0,endTime-Date.now());
+
+let seconds =
+Math.floor(remaining/1000);
+
+let hours =
+String(Math.floor(seconds/3600))
+.padStart(2,"0");
+
+seconds %= 3600;
+
+let minutes =
+String(Math.floor(seconds/60))
+.padStart(2,"0");
+
+let secs =
+String(seconds%60)
+.padStart(2,"0");
+
+document.getElementById("timer")
+.textContent =
+`${hours}:${minutes}:${secs}`;
+
+if(remaining>0){
+setTimeout(countdown,250);
+}
+
+}
+
+countdown();
+
+
+/* FINAL REVEAL */
+
+function reveal(){
+
+showSection("final");
+
+celebrate();
+
+}
+
+
+/* HEART / CONFETTI */
+
+function celebrate(){
+
+const emojis=[
+"❤️",
+"💗",
+"💖",
+"✨",
+"🌸",
+"💫"
+];
+
+for(let i=0;i<60;i++){
+
+const element=
+document.createElement("div");
+
+element.className="floating";
+
+element.textContent=
