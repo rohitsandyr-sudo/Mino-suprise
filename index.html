@@ -154,6 +154,7 @@ position:fixed;
 top:-40px;
 pointer-events:none;
 animation:fall 3s linear forwards;
+z-index:9999;
 }
 
 @keyframes fall{
@@ -169,8 +170,6 @@ opacity:0;
 
 <div class="background"></div>
 <div class="stars"></div>
-
-<!-- FIRST SCREEN -->
 
 <section id="home">
 
@@ -189,9 +188,6 @@ Open your surprise ✨
 </div>
 
 </section>
-
-
-<!-- MEMORIES -->
 
 <section id="memories" class="hidden">
 
@@ -236,9 +232,6 @@ One more thing... 👀
 
 </section>
 
-
-<!-- COUNTDOWN -->
-
 <section id="countdown" class="hidden">
 
 <div class="card">
@@ -250,7 +243,7 @@ Something special is waiting for you.
 </p>
 
 <div class="countdown" id="timer">
-00:00:00
+00:00:10
 </div>
 
 <button class="pink" onclick="reveal()">
@@ -260,9 +253,6 @@ Reveal it now ❤️
 </div>
 
 </section>
-
-
-<!-- FINAL -->
 
 <section id="final" class="hidden">
 
@@ -301,10 +291,7 @@ Final surprise 🎉
 
 </section>
 
-
 <script>
-
-/* TYPING ANIMATION */
 
 const message =
 "I made this little corner of the internet just for you... because some people deserve more than an ordinary message. ❤️";
@@ -315,8 +302,7 @@ function typeText(){
 
 if(index < message.length){
 
-document.getElementById("typed").textContent +=
-message[index];
+document.getElementById("typed").textContent += message[index];
 
 index++;
 
@@ -329,52 +315,48 @@ setTimeout(typeText,35);
 typeText();
 
 
-/* SCREEN SWITCHING */
-
 function showSection(id){
 
-document.querySelectorAll("section")
-.forEach(section=>{
+document.querySelectorAll("section").forEach(section=>{
 section.classList.add("hidden");
 });
 
-document.getElementById(id)
-.classList.remove("hidden");
+const target = document.getElementById(id);
+
+if(target){
+target.classList.remove("hidden");
+}
 
 window.scrollTo(0,0);
 
 }
 
 
-/* COUNTDOWN */
-
 let endTime = Date.now() + 10000;
 
 function countdown(){
 
-let remaining =
-Math.max(0,endTime-Date.now());
+let remaining = Math.max(0,endTime-Date.now());
 
-let seconds =
-Math.floor(remaining/1000);
+let seconds = Math.floor(remaining/1000);
 
 let hours =
-String(Math.floor(seconds/3600))
-.padStart(2,"0");
+String(Math.floor(seconds/3600)).padStart(2,"0");
 
 seconds %= 3600;
 
 let minutes =
-String(Math.floor(seconds/60))
-.padStart(2,"0");
+String(Math.floor(seconds/60)).padStart(2,"0");
 
 let secs =
-String(seconds%60)
-.padStart(2,"0");
+String(seconds%60).padStart(2,"0");
 
-document.getElementById("timer")
-.textContent =
+const timer = document.getElementById("timer");
+
+if(timer){
+timer.textContent =
 `${hours}:${minutes}:${secs}`;
+}
 
 if(remaining>0){
 setTimeout(countdown,250);
@@ -385,8 +367,6 @@ setTimeout(countdown,250);
 countdown();
 
 
-/* FINAL REVEAL */
-
 function reveal(){
 
 showSection("final");
@@ -395,8 +375,6 @@ celebrate();
 
 }
 
-
-/* HEART / CONFETTI */
 
 function celebrate(){
 
@@ -411,9 +389,33 @@ const emojis=[
 
 for(let i=0;i<60;i++){
 
-const element=
-document.createElement("div");
+const element=document.createElement("div");
 
 element.className="floating";
 
 element.textContent=
+emojis[Math.floor(Math.random()*emojis.length)];
+
+element.style.left=
+Math.random()*100+"vw";
+
+element.style.fontSize=
+(15+Math.random()*25)+"px";
+
+element.style.animationDuration=
+(2+Math.random()*3)+"s";
+
+document.body.appendChild(element);
+
+setTimeout(()=>{
+element.remove();
+},5000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
